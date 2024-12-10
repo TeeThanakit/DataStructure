@@ -69,6 +69,39 @@ struct Node *deleteElement(struct Node *head, int n)
     return head;
 }
 
+struct Node *InsertElement(struct Node *head, int n, int position)
+{
+    struct Node *current = head;
+    struct Node *previous;
+
+    struct Node *p = (struct Node *)malloc(sizeof(struct Node));
+    p->data = n;
+    p->next = NULL;
+
+    if (position == 1)
+    {
+        p->next = head;
+        head = p;
+        return head;
+    }
+
+    for (int i = 0; i < position - 1; i++)
+    {
+        previous = current;
+        current = current->next;
+        if (current == NULL)
+        {
+            printf("This position does not exist!.");
+            return head;
+        }
+    }
+
+    previous->next = p;
+    p->next = current;
+
+    return head;
+}
+
 int main()
 {
     int n;
@@ -83,7 +116,8 @@ int main()
     }
     printLinkedList(head);
     scanf("%d", &n);
-    deleteElement(head, n);
+    // deleteElement(head, n);
+    *InsertElement(head, 180, 3);
     printf("After deleted\n");
     printLinkedList(head);
 }
