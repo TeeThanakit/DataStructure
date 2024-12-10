@@ -102,6 +102,25 @@ struct Node *InsertElement(struct Node *head, int n, int position)
     return head;
 }
 
+struct Node *Edit(struct Node *head, int n, int position)
+{
+    struct Node *current = head;
+
+    for (int i = 0; i < position - 1; i++)
+    {
+        current = current->next;
+    }
+
+    if (current == NULL)
+    {
+        printf("Position exceeds\n");
+        return head;
+    }
+
+    current->data = n;
+    return head;
+}
+
 int main()
 {
     int n;
